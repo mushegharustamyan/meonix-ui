@@ -14,6 +14,7 @@ const store = configureStore({
 });
 
 saga.run(sagaWatcher);
+
 export type RootState = ReturnType<typeof store.getState>;
 
 export default store;
