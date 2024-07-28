@@ -1,51 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { Menu } from "./Menu";
-
-interface User {
-  username: string;
-}
+import React, { useEffect } from "react";
+import { UserProvider, useUser } from "../context/user/UserContext";
+import Container from "./shared/Container";
+import Icon from "./shared/Icon";
+import PillVector from "../assets/Pill_Vector.png";
+import Typography from "./shared/Typography";
+import EnergyContainer from "./Energy/EnergyContainer";
+import Menu from "./Menu/Menu";
 
 const WelcomePage: React.FC = () => {
-  const { telegramId } = useParams<{ telegramId: string }>();
-  const [user, setUser] = useState<User | null>(null);
+  const { user, loading } = useUser();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.post(
-          "http://localhost:3000/graphql",
-          {
-            query: `
-              query GetUser($telegramId: String!) {
-                user(telegramId: $telegramId) {
-                  username
-                }
-              }
-            `,
-            variables: {
-              telegramId,
-            },
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        setUser(response.data.data.user);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    if (telegramId) {
-      fetchUser();
-    }
-  }, [telegramId]);
-
-  if (!user) {
+    console.log("aaa");
+  });
+  if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
         Loading...
@@ -54,11 +22,47 @@ const WelcomePage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col  h-screen bg-gray-100">
+    <Container
+      backgroundColor="#050605"
+      justifyContent="justify-center"
+      display="flex"
+      alignItems="items-center"
+      height="h-full"
+      width="w-full"
+      flexDirection="flex-col"
+    >
+      <Typography
+        color="#D8F3E3"
+        fontFamily="font-mono"
+        fontSize="text-lg"
+        fontWeight="font-bold"
+      >
+        {user?.username}
+      </Typography>
+      <Container
+        flexDirection="flex-row"
+        justifyContent="justify-center"
+        alignItems="items-center"
+        backgroundColor="bg-none"
+      >
+        <Icon src={PillVector} alt="Vector Pill" width="48px" height="48px" />
+        <Typography color="#D8F3E3" fontSize="28px" fontWeight="500">
+          7.458 M
+        </Typography>
+      </Container>
+      {/*TODO INSERT CHARACTER*/}
+      <div className="bg-[#050605] h-96"></div>
+      <EnergyContainer />
+
       <Menu />
-      <h1 className="text-3xl font-bold mb-4">Welcome, {user.username}!</h1>
-    </div>
+    </Container>
   );
 };
 
-export default WelcomePage;
+const WelcomePageWrapper: React.FC = () => (
+  <UserProvider>
+    <WelcomePage />
+  </UserProvider>
+);
+
+export default WelcomePageWrapper;
