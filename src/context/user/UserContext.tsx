@@ -8,12 +8,13 @@ import React, {
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-interface User {
+export interface UserInterface {
   username: string;
+  energy: number;
 }
 
 interface UserContextProps {
-  user: User | null;
+  user: UserInterface | null;
   loading: boolean;
 }
 
@@ -23,19 +24,20 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const { telegramId } = useParams<{ telegramId: string }>();
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/graphql",
+          "http://localhost:3030/graphql",
           {
             query: `
               query GetUser($telegramId: String!) {
                 user(telegramId: $telegramId) {
                   username
+                  energy
                 }
               }
             `,

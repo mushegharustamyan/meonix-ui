@@ -7,8 +7,13 @@ import RocketVector from "../../assets/Rocket_Vector.png";
 import EnergyNumber from "./EnergyNumber";
 import EnergyBar from "./EnergyBar";
 import Button from "../shared/Button";
+import { UserInterface } from "../../context/user/UserContext";
 
-const EnergyContainer: React.FC = () => {
+interface EnergyContainerProps {
+  user: UserInterface | null;
+}
+const EnergyContainer: React.FC<EnergyContainerProps> = ({ user }) => {
+  const energyLeft = user?.energy ?? 0;
   return (
     <Container
       flexDirection="flex-col"
@@ -36,10 +41,10 @@ const EnergyContainer: React.FC = () => {
           containerHeight="24px"
           iconPosition="center"
         />
-        <EnergyNumber energyLeft="800" />
+        <EnergyNumber energyLeft={energyLeft} />
       </Container>
 
-      <EnergyBar energyLeft="800" />
+      <EnergyBar energyLeft={energyLeft} />
 
       <Container
         flexDirection="flex-row"

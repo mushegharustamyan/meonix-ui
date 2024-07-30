@@ -47,12 +47,12 @@ const WelcomePage: React.FC = () => {
       >
         <Icon src={PillVector} alt="Vector Pill" width="48px" height="48px" />
         <Typography color="#D8F3E3" fontSize="28px" fontWeight="500">
-          7.458 M
+          7.458 M {user?.energy}
         </Typography>
       </Container>
       {/*TODO INSERT CHARACTER*/}
       <div className="bg-[#050605] h-96"></div>
-      <EnergyContainer />
+      <EnergyContainer user={user} />
 
       <Menu />
     </Container>

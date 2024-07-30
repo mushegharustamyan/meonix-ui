@@ -2,8 +2,8 @@ import React from "react";
 import Typography from "../shared/Typography";
 
 interface EnergyNumberProps {
-  energyLeft: string;
-  upperBound?: string;
+  energyLeft: number;
+  upperBound?: number;
 }
 
 const EnergyNumber: React.FC<EnergyNumberProps> = ({
