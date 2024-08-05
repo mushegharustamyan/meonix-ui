@@ -45,8 +45,8 @@ const WelcomePage: React.FC = () => {
         alignItems="items-center"
         backgroundColor="bg-none"
       >
-        <Icon src={PillVector} alt="Vector Pill" width="48px" height="48px" />
-        <Typography color="#D8F3E3" fontSize="28px" fontWeight="500">
+        <Icon src={PillVector} alt="Vector Pill" width="32px" height="32px" />
+        <Typography color="#D8F3E3" fontSize="28px" fontWeight="500" customStyle = {{ marginLeft: "22px"}}>
           7.458 M {user?.energy}
         </Typography>
       </Container>
