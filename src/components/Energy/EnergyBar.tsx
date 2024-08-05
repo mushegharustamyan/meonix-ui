@@ -12,7 +12,7 @@ const EnergyBar: React.FC<EnergyBarProps> = ({
   const energyPercentage = (energyLeft / parseInt(upperBound)) * 100;
 
   return (
-    <div className="w-full bg-none h-[17px] rounded-[2px] overflow-hidden border-[.5px] border-[#45454538]">
+    <div className="w-full bg-none h-[21px] rounded-[2px] overflow-hidden border-[.5px] border-[#45454538]">
       <div
         className="bg-[#26DE1F] h-full"
         style={{ width: `${energyPercentage}%` }}

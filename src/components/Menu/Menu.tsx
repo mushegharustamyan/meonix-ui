@@ -5,6 +5,7 @@ import Icon from "../shared/Icon";
 import HomeVector from "../../assets/Home_Vector.png";
 import TaskVector from "../../assets/Task_Vector.png";
 import NftIcon from "../../assets/NFT_Icon.png";
+import UsersGroupIcon from "../../assets/Users_Group_Vector.png"
 
 const Menu: React.FC = () => {
   return (
@@ -65,7 +66,7 @@ const Menu: React.FC = () => {
         width="w-full"
         icon={
           <Icon
-            src={NftIcon}
+            src={UsersGroupIcon}
             alt="Rocket Icon"
             width="24px"
             height="24px"

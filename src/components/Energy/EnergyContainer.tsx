@@ -4,6 +4,7 @@ import Icon from "../shared/Icon";
 import Typography from "../shared/Typography";
 import EnergyVector from "../../assets/Energy_Vector.png";
 import RocketVector from "../../assets/Rocket_Vector.png";
+import TransferVector from "../../assets/Transfer_Horizontal_Vector.png"
 import EnergyNumber from "./EnergyNumber";
 import EnergyBar from "./EnergyBar";
 import Button from "../shared/Button";
@@ -69,12 +70,11 @@ const EnergyContainer: React.FC<EnergyContainerProps> = ({ user }) => {
             <Icon
               src={RocketVector}
               alt="Rocket Icon"
-              width="24px"
-              height="24px"
-              containerWidth="24px"
-              containerHeight="24px"
+              width="18px"
+              height="18px"
+              containerWidth="18px"
+              containerHeight="18px"
               iconPosition="center"
-              className="ml-4"
             />
           }
           iconPosition="right"
@@ -88,6 +88,19 @@ const EnergyContainer: React.FC<EnergyContainerProps> = ({ user }) => {
           borderRadius="rounded"
           borderSize="2px"
           width="w-full"
+          icon={
+            <Icon
+              src={TransferVector}
+              alt="Rocket Icon"
+              width="18px"
+              height="18px"
+              containerWidth="18px"
+              containerHeight="18px"
+              iconPosition="center"
+            />
+          }
+          iconPosition="right"
+
         />
       </Container>
     </Container>
