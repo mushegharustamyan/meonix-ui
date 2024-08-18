@@ -4,6 +4,7 @@ interface TypographyProps {
   children: ReactNode;
   color?: string;
   fontFamily?: string;
+  lineHeight?: string;
   fontSize?: string;
   fontWeight?: string;
   className?: string;
@@ -16,21 +17,26 @@ const Typography: React.FC<TypographyProps> = ({
   fontFamily = "font-sans",
   fontSize = "text-base",
   fontWeight = "font-normal",
+  lineHeight = "leading-[42px]",
   className = "",
   customStyle = {},
 }) => {
   const isCustomColor = color.startsWith("#") || color.startsWith("rgb");
   const isCustomFontSize = fontSize.includes("px") || fontSize.includes("%");
   const isCustomFontWeight = fontWeight.includes("00");
+  const isCustomLineHeight = lineHeight.includes("px");
 
   const typographyClasses = `${!isCustomColor ? color : ""} ${fontFamily} ${
     !isCustomFontSize ? fontSize : ""
-  } ${!isCustomFontWeight ? fontWeight : ""} ${className}`;
+  } ${!isCustomFontWeight ? fontWeight : ""}
+   ${!isCustomLineHeight ? lineHeight : ""}
+   ${className}`;
 
   const inlineStyle: CSSProperties = {
     ...(isCustomColor && { color }),
     ...(isCustomFontSize && { fontSize }),
     ...(isCustomFontWeight && { fontWeight }),
+    ...(isCustomLineHeight && { lineHeight }),
     ...customStyle,
   };
 

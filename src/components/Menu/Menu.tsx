@@ -2,12 +2,28 @@ import React from "react";
 import Container from "../shared/Container";
 import Button from "../shared/Button";
 import Icon from "../shared/Icon";
+import HomeVectorActive from "../../assets/Home_Vector_Active.png";
 import HomeVector from "../../assets/Home_Vector.png";
 import TaskVector from "../../assets/Task_Vector.png";
+import TaskVectorActive from "../../assets/Task_Vector_Active.png";
 import NftIcon from "../../assets/NFT_Icon.png";
-import UsersGroupIcon from "../../assets/Users_Group_Vector.png"
+import UsersGroup from "../../assets/Users_Group_Vector.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../../context/user/UserContext";
 
 const Menu: React.FC = () => {
+  const { user } = useUser();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const getIconSrc = (
+    path: string,
+    defaultIcon: string,
+    activeIcon: string,
+  ): string => {
+    return location.pathname.startsWith(path) ? activeIcon : defaultIcon;
+  };
+
   return (
     <Container
       flexDirection="flex-row"
@@ -27,7 +43,7 @@ const Menu: React.FC = () => {
         width="w-full"
         icon={
           <Icon
-            src={HomeVector}
+            src={getIconSrc("/welcome", HomeVector, HomeVectorActive)}
             alt="Rocket Icon"
             width="24px"
             height="24px"
@@ -37,6 +53,7 @@ const Menu: React.FC = () => {
           />
         }
         iconPosition="top"
+        onClick={() => navigate(`/welcome/${user?.telegramId}`)}
       />
 
       <Button
@@ -47,7 +64,7 @@ const Menu: React.FC = () => {
         width="w-full"
         icon={
           <Icon
-            src={TaskVector}
+            src={getIconSrc("/tasks", TaskVector, TaskVectorActive)}
             alt="Rocket Icon"
             width="24px"
             height="24px"
@@ -57,6 +74,7 @@ const Menu: React.FC = () => {
           />
         }
         iconPosition="top"
+        onClick={() => navigate(`/tasks/${user?.telegramId}`)}
       />
       <Button
         buttonText="Friends"
@@ -66,7 +84,7 @@ const Menu: React.FC = () => {
         width="w-full"
         icon={
           <Icon
-            src={UsersGroupIcon}
+            src={UsersGroup}
             alt="Rocket Icon"
             width="24px"
             height="24px"

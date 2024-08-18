@@ -9,13 +9,14 @@ interface ContainerProps {
   width?: string;
   flexDirection?: string;
   padding?: string;
+  borderRadius?: string;
   marginTop?: string;
   gap?: string;
   children: ReactNode;
 }
 
 const Container: React.FC<ContainerProps> = ({
-  backgroundColor = "bg-white",
+  backgroundColor = "bg-none",
   justifyContent = "justify-start",
   display = "flex",
   alignItems = "items-start",
@@ -23,6 +24,7 @@ const Container: React.FC<ContainerProps> = ({
   width = "w-auto",
   flexDirection = "flex-row",
   padding = "p-4",
+  borderRadius = "rounded",
   marginTop = "mt-0",
   gap = "0",
   children,
@@ -35,7 +37,7 @@ const Container: React.FC<ContainerProps> = ({
     !isCustomColor ? backgroundColor : ""
   } ${justifyContent} ${display} ${alignItems} ${flexDirection} ${padding} ${marginTop} ${
     !isCustomHeight ? height : ""
-  } ${!isCustomWidth ? width : ""}`;
+  } ${!isCustomWidth ? width : ""} ${borderRadius}`;
 
   const customStyle: CSSProperties = {
     ...(isCustomColor && { backgroundColor }),

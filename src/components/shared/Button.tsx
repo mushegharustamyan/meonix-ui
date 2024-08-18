@@ -2,9 +2,9 @@ import React, { CSSProperties, ReactNode } from "react";
 import Typography from "./Typography";
 
 interface ButtonProps {
-  buttonText: string;
+  buttonText: string | ReactNode;
   onClick?: () => void;
-  color?: string; // For button text color
+  color?: string;
   backgroundColor?: string;
   padding?: string;
   borderRadius?: string;
@@ -37,10 +37,10 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   icon,
   iconPosition = "left",
-  textColor = "text-white", // Default text color
-  textSize = "text-base", // Default text size
-  justifyContent = "justify-center", // Default to center
-  alignItems = "items-center", // Default to center
+  textColor = "text-white",
+  textSize = "text-base",
+  justifyContent = "justify-center",
+  alignItems = "items-center",
 }) => {
   const isCustomColor = color.startsWith("#") || color.startsWith("rgb");
   const isGradient = backgroundColor.includes("linear-gradient");
